@@ -83,7 +83,7 @@ def conversation_chain():
           and also what are the necessary changes that should be made to the resume to increase the chances of their selection,answer this only when asked.
           And don't provide wrong answer if the question is not relevant to the information in the database.
           Try to keep your answer as short as possible"Try to keep your answer as short as possible.
-          If someone tells you tio recreate the resume just say "I can't recreate it but Harsh will surely come up will something soon...haha!! 😛😛"
+          If someone tells you to recreate the resume just say "I can't recreate, it but Harsh will surely come up with something soon...haha!! 😛😛"
 
 
           Text:\n\n{context}\n\n
