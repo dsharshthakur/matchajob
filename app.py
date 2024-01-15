@@ -23,7 +23,7 @@ st.title("Evalute Your Resume.")
 
 #sidebar
 with st.sidebar:
-  resume_file = st.file_uploader(label="Upload You Resume.")
+  resume_file = st.file_uploader(label="Upload You Resume.", help = "This file should be in .pdf format))
     
     
 
@@ -48,7 +48,7 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
     raw_text = jd_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n " + resume_text
     return raw_text
   else:
-    st.warning("Not able to fetch data from the given Resume.Try with a different file") 
+    return #return nothing if thr resume text is empty 
 
 
 #this function divides the big text into multiple small chunks
@@ -82,8 +82,6 @@ def conversation_chain():
           Question:\n\n{question}\n\n
 
              '''
-
-
   prompt  = PromptTemplate(input_variables = [ "context", "question"] , template = template)
   qa_chain = load_qa_chain(llm = model ,prompt = prompt , chain_type = "stuff")
 
@@ -108,7 +106,7 @@ if resume_file is not None and not jd.isspace():
     chunks = create_chunks(knowledge_text)
     text_embedding(chunks)
   except:
-    st.warning("Some Network Issue occured.")
+    st.warning("Check your network connection or try with a different resume file ")
 
 def clearhistory():
   del st.session_state["history"]
