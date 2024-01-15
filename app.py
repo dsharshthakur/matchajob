@@ -35,7 +35,7 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
     st.write(resumefile)
     raw_text = "BELOW IS THE JOb DESCRIPTION:\n\n" + jobdescription
     raw_text = raw_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n "
-    pdf_reader = PdfReader(resume_file)
+    pdf_reader = PdfReader(resumefile)
     for page in pdf_reader:
       raw_text = raw_text + page.extract_text()
       st.write(page.extract_text())
