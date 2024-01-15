@@ -31,20 +31,17 @@ jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", 
 #necessary functions
 def jd_and_resume(jobdescription = jd ,resumefile = None):
 
-  if resumefile is not None:
-    st.write(resumefile)
-    raw_text = "BELOW IS THE JOb DESCRIPTION:\n\n" + jobdescription
-    raw_text = raw_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n "
-    pdf_reader = PdfReader(resumefile)
-    for page in pdf_reader:
+  pdf_reader = PdfReader(resume_file)
+  st.write(len(pdf_reader.pages)
+  if len(pdf_reader.pages)!= 0 and resumefile is not None:
+  raw_text = "BELOW IS THE JOb DESCRIPTION:\n\n" + jobdescription
+  raw_text = raw_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n "
+    for page in pdf_reader.pages:
       raw_text = raw_text + page.extract_text()
-      st.write(page.extract_text())
-    return raw_text
-  else:
-    st.write("Error Reading the Resume. Try With a different file (pdf).")
-  
 
- 
+  return raw_text
+  with open("custom.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 #this function divides the big text into multiple small chunks
