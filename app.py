@@ -23,7 +23,7 @@ st.title("Evalute Your Resume.")
 
 #sidebar
 with st.sidebar:
-  resume_file = st.file_uploader(label="Upload You Resume.", help = "This file should be in .pdf format))
+  resume_file = st.file_uploader(label="Upload You Resume.", help = "This file should be in .pdf format")
     
     
 
