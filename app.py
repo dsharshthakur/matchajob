@@ -24,7 +24,7 @@ st.markdown("<h2 style = 'text-align:center'>MatchMyCV</h2>" , unsafe_allow_html
 
 #sidebar
 with st.sidebar:
-  resume_file = st.file_uploader(label="Upload You Resume.", help = "This file should be in .pdf format")
+  resume_file = st.file_uploader(label="Upload You Resume.", help = "The file should be in .pdf format")
     
     
 
@@ -38,7 +38,7 @@ st.markdown("<br>" , unsafe_allow_html = True)
 
     
 #job description
-jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", height= 100 )
+jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", height= 220 )
 
 #necessary functions
 def jd_and_resume(jobdescription = jd ,resumefile = None):
