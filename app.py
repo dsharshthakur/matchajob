@@ -24,25 +24,31 @@ st.title("Evalute Your Resume.")
 #sidebar
 with st.sidebar:
   resume_file = st.file_uploader(label="Upload You Resume.")
+    
+    
 
+  with open("custom.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+    
 #job description
 jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", height= 100 )
 
 #necessary functions
 def jd_and_resume(jobdescription = jd ,resumefile = None):
+  jd_text = "BELOW IS THE JOb DESCRIPTION:\n\n" + jobdescription
 
+  resume_text = ""
   pdf_reader = PdfReader(resume_file)
-  st.write(len(pdf_reader.pages))
-  if len(pdf_reader.pages)!= 0 and resumefile is not None:
-    raw_text = "BELOW IS THE JOb DESCRIPTION:\n\n" + jobdescription
-    raw_text = raw_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n "
+  if resumefile is not None:
     for page in pdf_reader.pages:
-      raw_text = raw_text + page.extract_text()
-  st.write(raw_text)
-
-  return raw_text
-  with open("custom.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+      resume_text = resume_text + page.extract_text()
+  
+  if not resume_text.isspace():
+    raw_text = jd_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n " + resume_text
+    return raw_text
+  else:
+    st.warning("Not able to fetch data from the given Resume.Try with a different file") 
 
 
 #this function divides the big text into multiple small chunks
