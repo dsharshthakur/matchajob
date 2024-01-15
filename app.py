@@ -81,7 +81,7 @@ def conversation_chain():
           resume of the candidate. So your job is it to provide sumarized answers and help the recruiter to evaluate the resume of the candidate. And for the
           candidate you have to provide suggestions based on the job description that how his/her resume fits the requirements
           and also what are the necessary changes that should be made to the resume to increase the chances of their selection,answer this only when asked.
-          and don't provide wrong answer.Try to keep your answer as short as possible"
+          .Try to keep your answer as short as possible"
 
           Text:\n\n{context}\n\n
           Question:\n\n{question}\n\n
