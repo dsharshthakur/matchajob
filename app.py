@@ -31,17 +31,17 @@ jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", 
 #necessary functions
 def jd_and_resume(jobdescription = jd ,resumefile = None):
 
-  if resumefile is not None and not resumefile.isspace():
+  if resumefile is not None:
     st.write(resumefile)
     raw_text = "BELOW IS THE JOb DESCRIPTION:\n\n" + jobdescription
     raw_text = raw_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n "
     pdf_reader = PdfReader(resume_file)
-    for page in pdf_reader.pages:
+    for page in pdf_reader:
       raw_text = raw_text + page.extract_text()
       st.write(page.extract_text())
     return raw_text
   else:
-    return
+    st.write("Error Reading the Resume. Try With a different file (pdf).")
   
 
  
