@@ -120,6 +120,7 @@ def clearhistory():
   del st.session_state["history"]
 
 st.markdown("<hr>", unsafe_allow_html= True)
+st.markdown("<h4 style = 'color:golden; text-align:center;'>MyBot</h4>", unsafe_allow_html= True)
 
 st.markdown("<br>", unsafe_allow_html= True)
 st.markdown("<br>" , unsafe_allow_html= True)
