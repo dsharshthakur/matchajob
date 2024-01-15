@@ -118,6 +118,9 @@ if resume_file is not None and not jd.isspace():
 
 def clearhistory():
   del st.session_state["history"]
+
+st.markdown("<hr>", unsafe_allow_html= True)
+
 st.markdown("<br>", unsafe_allow_html= True)
 st.markdown("<br>" , unsafe_allow_html= True)
 
