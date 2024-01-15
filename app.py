@@ -12,9 +12,8 @@ import os
 import streamlit as st
 import time
 
-load_dotenv()
-
-key = os.getenv("PROJECT_KEY")
+#key 
+key = st.secrets["PROJECT_KEY"]
 
 with open("custom.css") as f:
   st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
