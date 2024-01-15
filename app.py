@@ -141,9 +141,9 @@ if resume_file is not None and not jd.isspace():
 
 
 
-  user_message = st.chat_input("Ask anything.", avatar = "aiimg.jpg")
+  user_message = st.chat_input("Ask anything.")
   if user_message:
-    with st.chat_message("User"):
+    with st.chat_message("User", avatar = "aiimg.jpg"):
       st.markdown(f"<div class='chat-container user-message'>{user_message}</div>", unsafe_allow_html = True)
       st.session_state["history"].append({"role":"user" , "message":user_message})
 
