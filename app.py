@@ -19,7 +19,7 @@ with open("custom.css") as f:
   st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 #App title
-st.markdown("<h4 style = 'text-align:center'>MatchMYCV</h4>" , unsafe_allow_html = True)
+st.markdown("<h2 style = 'text-align:center'>MatchMyCV</h2>" , unsafe_allow_html = True)
 
 
 #sidebar
