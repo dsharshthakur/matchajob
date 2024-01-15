@@ -38,7 +38,7 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
     pdf_reader = PdfReader(resume_file)
     for page in pdf_reader.pages:
       raw_text = raw_text + page.extract_text()
-      st.write(raw_text)
+      st.write(page.extract_text())
     return raw_text
   else:
     return
