@@ -19,7 +19,8 @@ with open("custom.css") as f:
   st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 #App title
-st.title("Evalute Your Resume.")
+st.markdown("<h4 style = 'text-align:center'>MatchMYCV</h4>" , unsafe_allow_html = True)
+
 
 #sidebar
 with st.sidebar:
@@ -151,7 +152,7 @@ if resume_file is not None and not jd.isspace():
 
     st.session_state["history"].append({"role":"AI" , "message":ai_response})
 else:
-  st.info("Please upload both the documents properly")
+  st.info("Please upload all the required informations first.")
 
 
 
