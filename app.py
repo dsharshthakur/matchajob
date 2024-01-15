@@ -141,7 +141,7 @@ if resume_file is not None and not jd.isspace():
 
 
 
-  user_message = st.chat_input("Ask anything.")
+  user_message = st.chat_input("Ask anything.", avatar = "aiimg.jpg")
   if user_message:
     with st.chat_message("User"):
       st.markdown(f"<div class='chat-container user-message'>{user_message}</div>", unsafe_allow_html = True)
