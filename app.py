@@ -31,6 +31,12 @@ with st.sidebar:
   with open("custom.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+st.markdown("<br>" , unsafe_allow_html = True)
+st.markdown("<br>" , unsafe_allow_html = True)
+st.markdown("<br>" , unsafe_allow_html = True)
+st.markdown("<br>" , unsafe_allow_html = True)
+st.markdown("<br>" , unsafe_allow_html = True)
+
     
 #job description
 jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", height= 100 )
