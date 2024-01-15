@@ -52,7 +52,7 @@ def create_chunks(text):
 def text_embedding(chunks):
   embedding = GoogleGenerativeAIEmbeddings(model = "models/embedding-001" ,google_api_key = key )
   vectordb = FAISS.from_texts(chunks , embedding = embedding)
-  vectordb.save_local("matchajob/faiss_index")
+  vectordb.save_local("faiss_index")
 
 
 #chaining the model and the prompt
