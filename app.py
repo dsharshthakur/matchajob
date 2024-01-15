@@ -159,7 +159,7 @@ if resume_file is not None and not jd.isspace():
 
     st.session_state["history"].append({"role":"AI" , "message":ai_response})
 else:
-  st.info("Please upload all the required informationfirst.")
+  st.info("Please upload all the required information first.")
 
 
 
