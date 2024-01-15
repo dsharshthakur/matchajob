@@ -1,0 +1,25 @@
+.chat-container {
+    background-color: #f5f5f5; /* Light gray background */
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Style user messages */
+.user-message {
+    background-color: grey; /* Light blue */
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.user-message p {
+    color: #000;
+    margin: 0;
+}
+
+/* Additional styling for clarity */
+.chat-container p {
+    font-family: sans-serif;
+    font-size: 16px;
+}
