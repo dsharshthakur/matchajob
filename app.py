@@ -31,7 +31,7 @@ jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", 
 #necessary functions
 def jd_and_resume(jobdescription = jd ,resumefile = None):
 
-  if resumefile is not None:
+  if resumefile is not None and not resumefile.isspace():
     st.write(resumefile)
     raw_text = "BELOW IS THE JOb DESCRIPTION:\n\n" + jobdescription
     raw_text = raw_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n "
