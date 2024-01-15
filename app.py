@@ -38,6 +38,7 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
     raw_text = raw_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n "
     for page in pdf_reader.pages:
       raw_text = raw_text + page.extract_text()
+  st.write(raw_text)
 
   return raw_text
   with open("custom.css") as f:
