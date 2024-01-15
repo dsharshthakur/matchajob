@@ -151,13 +151,13 @@ if resume_file is not None and not jd.isspace():
       ai_response  = generation(user_message)
       ai_response = ai_response["output_text"]
 
-      with st.spinner(text= "Progress"):
+      with st.spinner(text= "Generating"):
         time.sleep(5)
         st.markdown(ai_response)
 
     st.session_state["history"].append({"role":"AI" , "message":ai_response})
 else:
-  st.info("Please upload all the required informations first.")
+  st.info("Please upload all the required informationfirst.")
 
 
 
