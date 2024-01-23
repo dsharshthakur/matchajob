@@ -1,4 +1,4 @@
-
+  
 import langchain
 from  PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -61,15 +61,11 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
 def conversation_chain():
   model = ChatGoogleGenerativeAI(model = "gemini-pro" , google_api_key = key ,temperature = 0.5)
   template = '''
-          You are a helpfull assistant to a candidate looking for a job and employer both.
-          You will be provided with a text which includes the job description(JD) and also
-          resume(CV) of the candidate. So your job is it to act like a smart ATS System(Applicant Tracking System) and provide sumarized answers and help the recruiter to evaluate the resume of the candidate. And for the
-          candidate you have to provide suggestions based on the job description that how his/her resume fits the requirement.
-          When user asks about the missing keywords from resume then provide them the main keywords(seed keyword) with great accuracy that are missing from the resume but present in the Job descriptionj(JD).
-          And don't provide wrong answer if the question is not relevant to the information in the provided text.Try to keep your answer as short as possible.
+          You are a helpful assistant tasked with aiding both a job candidate and an employer. Given a text containing a Job Description (JD) and the candidate's resume (CV), your role is to emulate an intelligent ATS System (Applicant Tracking System).
+          Provide concise answers to assist the recruiter in evaluating the candidate's suitability for the job. For the candidate, offer suggestions based on the JD, highlighting how their resume aligns with the job requirements.
+          If the user inquires about missing keywords from the resume, accurately identify the main keywords (seed keywords) absent from the resume but present in the JD. Only respond to questions relevant to the provided information and aim for brevity in your answers.
           If someone tells you to recreate the resume just say "I can't recreate, it but Harsh will surely come up with something soon...haha!! 😛😛"
-
-
+          
           Text:\n\n{text}\n\n
           Question:\n\n{question}\n\n
 
