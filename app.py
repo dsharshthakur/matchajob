@@ -137,11 +137,11 @@ if resume_file is not None and not jd.isspace():
 
     with st.chat_message("AI"):
       ai_response  = generation(knowledge_text, user_message)
-      
+      ai_response = ai_response["text"]
 
       with st.spinner(text= "Generating"):
-        time.sleep(5)
-        st.markdown(ai_response["text"])
+        time.sleep(2)
+        st.markdown(ai_response)
 
     st.session_state["history"].append({"role":"AI" , "message":ai_response})
 else:
