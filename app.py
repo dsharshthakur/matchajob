@@ -65,7 +65,7 @@ def conversation_chain():
           You will be provided with a text which includes the job description(JD) and also
           resume(CV) of the candidate. So your job is it to act like a ATS System(Applicant Tracking System) and provide sumarized answers and help the recruiter to evaluate the resume of the candidate. And for the
           candidate you have to provide suggestions based on the job description that how his/her resume fits the requirement.
-          When user asks about the missing keywords from resume then provide them the main keywords(response should be word keywords i.e do not give sentences as response) with great accuracy that are missing from the resume but present in the Job descriptionj(JD).
+          When user asks about the missing keywords from resume then provide them the main keywords(response should be 2 to 3 word keywords i.e do not long sentences as keyword) with great accuracy that are missing from the resume but present in the Job descriptionj(JD).
           And don't provide wrong answer if the question is not relevant to the information in the provided text.Try to keep your answer as short as possible.
           If someone tells you to recreate the resume just say "I can't recreate, it but Harsh will surely come up with something soon...haha!! 😛😛"
 
