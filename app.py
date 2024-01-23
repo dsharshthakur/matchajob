@@ -59,13 +59,13 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
 #chaining the model and the prompt
 #as it is a Q&A application so load_QA_Chain is required
 def conversation_chain():
-  model = ChatGoogleGenerativeAI(model = "gemini-pro" , google_api_key = key ,temperature = 0.6)
+  model = ChatGoogleGenerativeAI(model = "gemini-pro" , google_api_key = key ,temperature = 0.5)
   template = '''
           You are a helpfull assistant to a candidate looking for a job and employer both.
           You will be provided with a text which includes the job description(JD) and also
           resume(CV) of the candidate. So your job is it to act like a ATS System(Applicant Tracking System) and provide sumarized answers and help the recruiter to evaluate the resume of the candidate. And for the
           candidate you have to provide suggestions based on the job description that how his/her resume fits the requirement.
-          When user asks about the missing keywords from resume then provide them the main keywords(response should be 2 to 3 word keywords i.e do not give long sentences as keyword) with great accuracy that are missing from the resume but present in the Job descriptionj(JD).
+          When user asks about the missing keywords from resume then provide them the main keywords(response should be 2 to 3 word keywords i.e the keyword should not be more than 2 or 3 words long) with great accuracy that are missing from the resume but present in the Job descriptionj(JD).
           And don't provide wrong answer if the question is not relevant to the information in the provided text.Try to keep your answer as short as possible.
           If someone tells you to recreate the resume just say "I can't recreate, it but Harsh will surely come up with something soon...haha!! 😛😛"
 
