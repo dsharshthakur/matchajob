@@ -137,7 +137,7 @@ if resume_file is not None and not jd.isspace():
 
     with st.chat_message("AI"):
       ai_response  = generation(knowledge_text, user_message)
-      ai_response = ai_response["output_text"]
+      
 
       with st.spinner(text= "Generating"):
         time.sleep(5)
