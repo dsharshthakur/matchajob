@@ -7,7 +7,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-
+from langchain.chains import LLMChain
 import os
 import streamlit as st
 import time
@@ -83,9 +83,9 @@ def conversation_chain():
 
              '''
   prompt  = PromptTemplate(input_variables = [ "text", "question"] , template = template)
-  qa_chain = load_qa_chain(llm = model ,prompt = prompt , chain_type = "stuff")
+  chain =LLMChain(llm = model ,prompt = prompt , chain_type = "stuff")
 
-  return qa_chain
+  return chain
 
 #Response generation
 def generation(chunks,user_question):
@@ -94,7 +94,7 @@ def generation(chunks,user_question):
 
   chain = conversation_chain()
 
-  final_response  = chain({"input_documents" : docs , "question" : user_question} )
+  final_response  = chain({"text" : docs , "question" : user_question} )
   return final_response
 
 #function call
