@@ -64,11 +64,7 @@ def create_chunks(text):
   return chunks
 
 
-#perform text embedding and store it in a vector db
-def text_embedding(chunks):
-  embedding = GoogleGenerativeAIEmbeddings(model = "models/embedding-001" ,google_api_key = key )
-  vectordb = FAISS.from_texts(chunks , embedding = embedding)
-  vectordb.save_local("faiss_index")
+
 
 
 #chaining the model and the prompt
@@ -94,24 +90,23 @@ def conversation_chain():
 
   return qa_chain
 
-#load vector db
-#and perform similarity search baseed on the question given by the user
-def generation(user_question):
-  embedding = GoogleGenerativeAIEmbeddings(model = "models/embedding-001", google_api_key = key)
-  load_vectordb = FAISS.load_local("faiss_index", embedding)
-  similarity = load_vectordb.similarity_search(user_question)
+#Response generation
+def generation(chunks,user_question):
+  docs  = chunks
+
 
   chain = conversation_chain()
 
-  final_response  = chain({"input_documents" : similarity , "question" : user_question} )
+  final_response  = chain({"input_documents" : chunks , "question" : user_question} )
   return final_response
+
 
 if resume_file is not None and not jd.isspace():
   try:
 
     knowledge_text = jd_and_resume( jd , resume_file)
     chunks = create_chunks(knowledge_text)
-    text_embedding(chunks)
+    
   except:
     st.warning("Check your network connection or try with a different resume file ")
 
@@ -153,7 +148,7 @@ if resume_file is not None and not jd.isspace():
       st.session_state["history"].append({"role":"user" , "message":user_message})
 
     with st.chat_message("AI"):
-      ai_response  = generation(user_message)
+      ai_response  = generation(chunks, user_message)
       ai_response = ai_response["output_text"]
 
       with st.spinner(text= "Generating"):
