@@ -49,7 +49,7 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
   if resumefile is not None:
     for page in pdf_reader.pages:
       resume_text = resume_text + page.extract_text()
-0  
+  
   if resume_text.strip()!= ""  :
     raw_text = jd_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n " + resume_text
     return raw_text
