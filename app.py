@@ -60,8 +60,9 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
 #this function divides the big text into multiple small chunks
 def create_chunks(text):
   splitter = RecursiveCharacterTextSplitter(chunk_size = 10000 , chunk_overlap = 1000)
-  chunks = splitter.split_text( text = text)
-  return chunks
+  docs = splitter.create_documents( [text])
+  return docs
+
 
 
 
@@ -97,10 +98,10 @@ def generation(chunks,user_question):
 
   chain = conversation_chain()
 
-  final_response  = chain({"input_documents" : chunks , "question" : user_question} )
+  final_response  = chain({"input_documents" : docs , "question" : user_question} )
   return final_response
 
-
+#function call
 if resume_file is not None and not jd.isspace():
   try:
 
@@ -119,7 +120,7 @@ st.markdown("<h4 style = 'text-align:center;'><u>MyBot</u></h4>", unsafe_allow_h
 st.markdown("<br>", unsafe_allow_html= True)
 st.markdown("<br>" , unsafe_allow_html= True)
 
-#funcation call
+#Saving chat history
 if resume_file is not None and not jd.isspace():
   if "history" in st.session_state:
     col1, col2, col3,col4,col5= st.columns(5)
