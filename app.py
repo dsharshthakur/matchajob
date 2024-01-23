@@ -64,36 +64,32 @@ def create_chunks(text):
   return docs
 
 
-
-
-
-
 #chaining the model and the prompt
 #as it is a Q&A application so load_QA_Chain is required
 def conversation_chain():
   model = ChatGoogleGenerativeAI(model = "gemini-pro" , google_api_key = key ,temperature = 0.6)
   template = '''
           You are a helpfull assistant to a candidate looking for a job and employer both.
-          You will be provided with a text which includes the job description posted on some website and also the
-          resume of the candidate. So your job is it to act like a ATS System(Applicant Tracking System) and provide sumarized answers and help the recruiter to evaluate the resume of the candidate. And for the
+          You will be provided with a text which includes the job description(JD) and also
+          resume(CV) of the candidate. So your job is it to act like a ATS System(Applicant Tracking System) and provide sumarized answers and help the recruiter to evaluate the resume of the candidate. And for the
           candidate you have to provide suggestions based on the job description that how his/her resume fits the requirement.
           When user asks about the missing keywords from resume then provide them the main keywords(response should be word keywords i.e do not give sentences as response) with great accuracy that are missing from the resume but present in the Job descriptionj(JD).
-          And don't provide wrong answer if the question is not relevant to the information in the database.Try to keep your answer as short as possible.
+          And don't provide wrong answer if the question is not relevant to the information in the provided text.Try to keep your answer as short as possible.
           If someone tells you to recreate the resume just say "I can't recreate, it but Harsh will surely come up with something soon...haha!! 😛😛"
 
 
-          Text:\n\n{context}\n\n
+          Text:\n\n{text}\n\n
           Question:\n\n{question}\n\n
 
              '''
-  prompt  = PromptTemplate(input_variables = [ "context", "question"] , template = template)
+  prompt  = PromptTemplate(input_variables = [ "text", "question"] , template = template)
   qa_chain = load_qa_chain(llm = model ,prompt = prompt , chain_type = "stuff")
 
   return qa_chain
 
 #Response generation
 def generation(chunks,user_question):
-  docs  = chunks
+ 
 
 
   chain = conversation_chain()
