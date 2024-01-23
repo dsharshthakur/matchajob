@@ -56,14 +56,6 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
   else:
     return #return nothing if thr resume text is empty 
 
-
-#this function divides the big text into multiple small chunks
-def create_chunks(text):
-  splitter = RecursiveCharacterTextSplitter(chunk_size = 10000 , chunk_overlap = 1000)
-  docs = splitter.create_documents( [text])
-  return docs
-
-
 #chaining the model and the prompt
 #as it is a Q&A application so load_QA_Chain is required
 def conversation_chain():
@@ -83,18 +75,18 @@ def conversation_chain():
 
              '''
   prompt  = PromptTemplate(input_variables = [ "text", "question"] , template = template)
-  chain =LLMChain(llm = model ,prompt = prompt , chain_type = "stuff")
+  chain =LLMChain(llm = model ,prompt = prompt)
 
   return chain
 
 #Response generation
-def generation(chunks,user_question):
+def generation(knowlegde_text,user_question):
  
 
 
   chain = conversation_chain()
 
-  final_response  = chain({"text" : docs , "question" : user_question} )
+  final_response  = chain({"text" : knowledge_text , "question" : user_question} )
   return final_response
 
 #function call
@@ -102,7 +94,6 @@ if resume_file is not None and not jd.isspace():
   try:
 
     knowledge_text = jd_and_resume( jd , resume_file)
-    chunks = create_chunks(knowledge_text)
     
   except:
     st.warning("Check your network connection or try with a different resume file ")
@@ -145,7 +136,7 @@ if resume_file is not None and not jd.isspace():
       st.session_state["history"].append({"role":"user" , "message":user_message})
 
     with st.chat_message("AI"):
-      ai_response  = generation(chunks, user_message)
+      ai_response  = generation(knowledge_text, user_message)
       ai_response = ai_response["output_text"]
 
       with st.spinner(text= "Generating"):
