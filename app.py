@@ -42,7 +42,7 @@ jd = st.text_area(label ="Copy & Paste the Job Description here..",value = " ", 
 
 #necessary functions
 def jd_and_resume(jobdescription = jd ,resumefile = None):
-  jd_text = "BELOW IS THE JOB DESCRIPTION(JD):\n\n" + jobdescription
+  jd_text =  jobdescription
 
   resume_text = ""
   pdf_reader = PdfReader(resume_file)
@@ -51,8 +51,7 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
       resume_text = resume_text + page.extract_text()
   
   if resume_text.strip()!= ""  :
-    raw_text = jd_text + "\n\nBELOW IS THE RESUME(CV) OF THE CANDIDATE:\n\n " + resume_text
-    return raw_text
+    return jd_text , resume_text
   else:
     return #return nothing if thr resume text is empty 
 
@@ -67,30 +66,31 @@ def conversation_chain():
           not more than 2-3 words long . Only respond to questions relevant to the provided information.
           If someone tells you to recreate the resume just say "I can't recreate, it but Harsh will surely come up with something soon...haha!! 😛😛"
           
-          Text:\n\n{text}\n\n
+          Jd:\n\n{text}\n\n
+          Resume:\n\n{resume}\n\n
           Question:\n\n{question}\n\n
 
              '''
-  prompt  = PromptTemplate(input_variables = [ "text", "question"] , template = template)
+  prompt  = PromptTemplate(input_variables = [ "text","resume", "question"] , template = template)
   chain =LLMChain(llm = model ,prompt = prompt)
 
   return chain
 
 #Response generation
-def generation(knowlegde_text,user_question):
+def generation(resume_text,jd_text,user_question):
  
 
 
   chain = conversation_chain()
 
-  final_response  = chain({"text" : knowledge_text , "question" : user_question} )
+  final_response  = chain({"text" : jd_text ,"resume":resume_text,"question" : user_question} )
   return final_response
 
 #function call
 if resume_file is not None and not jd.isspace():
   try:
 
-    knowledge_text = jd_and_resume( jd , resume_file)
+    jd_text , resume_text = jd_and_resume( jd , resume_file)
     
   except:
     st.warning("Check your network connection or try with a different resume file ")
@@ -133,7 +133,7 @@ if resume_file is not None and not jd.isspace():
       st.session_state["history"].append({"role":"user" , "message":user_message})
 
     with st.chat_message("AI"):
-      ai_response  = generation(knowledge_text, user_message)
+      ai_response  = generation(resume_text, jd_text, user_message)
       ai_response = ai_response["text"]
 
       with st.spinner(text= "Generating"):
