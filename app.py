@@ -49,7 +49,7 @@ def jd_and_resume(jobdescription = jd ,resumefile = None):
   if resumefile is not None:
     for page in pdf_reader.pages:
       resume_text = resume_text + page.extract_text()
-  
+0  
   if resume_text.strip()!= ""  :
     raw_text = jd_text + "\n\nBELOW IS THE RESUME OF THE CANDIDATE:\n\n " + resume_text
     return raw_text
@@ -74,7 +74,7 @@ def text_embedding(chunks):
 #chaining the model and the prompt
 #as it is a Q&A application so load_QA_Chain is required
 def conversation_chain():
-  model = ChatGoogleGenerativeAI(model = "gemini-pro" , google_api_key = key )
+  model = ChatGoogleGenerativeAI(model = "gemini-pro" , google_api_key = key ,temperature = 0.6)
   template = '''
           You are a helpfull assistant to a candidate looking for a job and employer both.
           You will be provided with a text which includes the job description posted on some website and also the
@@ -82,7 +82,7 @@ def conversation_chain():
           candidate you have to provide suggestions based on the job description that how his/her resume fits the requirements
           and also what are the necessary changes that should be made to the resume to increase the chances of their selection,answer this only when asked.
           And don't provide wrong answer if the question is not relevant to the information in the database.
-          Try to keep your answer as short as possible"Try to keep your answer as short as possible.
+          Try to keep your answer as short as possible Try to keep your answer as short as possible.
           If someone tells you to recreate the resume just say "I can't recreate, it but Harsh will surely come up with something soon...haha!! 😛😛"
 
 
