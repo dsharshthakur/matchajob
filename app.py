@@ -26,8 +26,6 @@ st.markdown("<h2 style = 'text-align:center'>MatchMyCV</h2>" , unsafe_allow_html
 with st.sidebar:
   resume_file = st.file_uploader(label="Upload You Resume.", help = "The file should be in .pdf format")
     
-    
-
   with open("custom.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
