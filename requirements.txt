@@ -3,3 +3,4 @@ streamlit
 langchain
 langchain-google-genai
 faiss-cpu
+langchain_community
